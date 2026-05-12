@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You</title>
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .message-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            animation: fadeInUp 1s ease-in-out;
+        }
+        h1 {
+            margin-bottom: 1.5rem;
+            color: #ff6f61;
+        }
+        p {
+            color: #333;
+            margin: 0.5rem 0;
+        }
+        .pet-details {
+            margin: 1rem 0;
+        }
+        .back-button {
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            padding: 0.7rem 1.5rem;
+            transition: background 0.3s;
+        }
+        .back-button:hover {
+            background-color: #e35d5b;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <h1>Thank You!</h1>
+        <p>We have received your adoption request you will be notified upon request approval<span id="petName"></span>.</p>
+        <div class="pet-details">
+            <p><strong>Pet Name:</strong> <span id="displayPetName"></span></p>
+            <p><strong>Your Name:</strong> <span id="displayUserName"></span></p>
+            <p><strong>Your Email:</strong> <span id="displayUserEmail"></span></p>
+        </div>
+        <button class="back-button" onclick="goBack()">Back to Home</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const petName = urlParams.get('pet');
+            const userName = urlParams.get('name');
+            const userEmail = urlParams.get('email');
+            document.getElementById('displayPetName').textContent = petName;
+            document.getElementById('displayUserName').textContent = userName;
+            document.getElementById('displayUserEmail').textContent = userEmail;
+        });
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

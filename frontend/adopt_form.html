@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt a Pet</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 1.5rem;
+            color: #ff6f61;
+        }
+        label {
+            display: block;
+            margin: 0.5rem 0;
+            color: #333;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #ff6f61;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            padding: 0.7rem 1.5rem;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #e35d5b;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Adopt a Pet</h1>
+        <form id="adoptForm" onsubmit="handleAdoption(event)">
+            <label for="petName">Pet Name:</label>
+            <input type="text" id="petName" name="petName" readonly>
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const petName = urlParams.get('pet');
+            document.getElementById('petName').value = petName;
+        });
+
+        function handleAdoption(event) {
+            event.preventDefault();
+            const petName = document.getElementById('petName').value;
+            const userName = document.getElementById('name').value;
+            const userEmail = document.getElementById('email').value;
+            window.location.href = `thank_you.html?pet=${petName}&name=${userName}&email=${userEmail}`;
+        }
+    </script>
+</body>
+</html>

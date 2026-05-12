@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adopt a Pet - Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Adoption Confirmation</h1>
+            <nav>
+                <a href="index.html" class="button">Home</a>
+                <a href="login.html" class="button">Login</a>
+                <a href="adopt.html" class="button">Adopt Pet</a>
+                <a href="contact.html" class="button">Contact Now</a>
+            </nav>
+        </header>
+        <main>
+            <h2>Thank you for adopting!</h2>
+            <p id="userDetails"></p>
+        </main>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const userDetails = JSON.parse(sessionStorage.getItem('userDetails'));
+
+            if (userDetails) {
+                const detailsParagraph = document.getElementById('userDetails');
+                detailsParagraph.innerHTML = `
+                    <strong>Name:</strong> ${userDetails.name}<br>
+                    <strong>Email:</strong> ${userDetails.email}<br>
+                    <strong>Phone Number:</strong> ${userDetails.phone}<br>
+                    <strong>Address:</strong> ${userDetails.address}
+                `;
+            } 
+            else {
+                // Sample owner details
+                const detailsParagraph = document.getElementById('userDetails');
+                detailsParagraph.innerHTML = `
+                    <strong>Name:</strong> John Doe<br>
+                    <strong>Email:</strong> johndoe@example.com<br>
+                    <strong>Phone Number:</strong> (123) 456-7890<br>
+                    <strong>Address:</strong> 123 Main St, Springfield, USA
+                `;
+            }
+        });
+    </script>
+</body>
+</html>
